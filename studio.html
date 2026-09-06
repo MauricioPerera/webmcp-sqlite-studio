@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebMCP SQLite Studio</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗄️</text></svg>" />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <!-- Top Navbar -->
+    <header>
+      <div class="logo-area">
+        <span class="logo-icon">🗄️</span>
+        <span class="logo-title">WebMCP SQLite Studio</span>
+        <span class="logo-badge">W3C WebMCP &bull; sql.js WASM</span>
+      </div>
+      <div class="header-actions">
+        <button id="btn-run-top" class="btn btn-primary">
+          <span>▶</span> Run Query (Ctrl+Enter)
+        </button>
+        <button id="btn-import-modal" class="btn">
+          <span>📥</span> Import JSON
+        </button>
+        <button id="btn-export-sql" class="btn">
+          <span>💾</span> Export SQL Dump
+        </button>
+        <button id="btn-export-db" class="btn">
+          <span>📦</span> Export .sqlite
+        </button>
+        <button id="btn-reset-db" class="btn">
+          <span>🔄</span> Reset
+        </button>
+        <a href="./index.html" class="btn" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 6px;">
+          <span>💡</span> Guía
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Body Container -->
+    <div class="app-body">
+      <!-- Left Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-tabs">
+          <div class="sidebar-tab active" data-tab="tab-schema">📊 Schema</div>
+          <div class="sidebar-tab" data-tab="tab-webmcp">⚡ WebMCP (7)</div>
+          <div class="sidebar-tab" data-tab="tab-logs">📜 Invocations</div>
+        </div>
+        <div class="sidebar-content">
+          <!-- Schema Panel -->
+          <div id="tab-schema" class="sidebar-panel active">
+            <div id="schema-tree-root"></div>
+          </div>
+          <!-- WebMCP Tools Panel -->
+          <div id="tab-webmcp" class="sidebar-panel">
+            <div id="webmcp-tools-root"></div>
+          </div>
+          <!-- Logs Panel -->
+          <div id="tab-logs" class="sidebar-panel">
+            <div id="webmcp-logs-root"></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Workspace (Editor + Results Grid) -->
+      <main class="main-workspace">
+        <!-- SQL Editor Pane -->
+        <section class="editor-pane">
+          <div class="editor-toolbar">
+            <div class="editor-snippets">
+              <span style="font-size: 11px; color: #888; margin-right: 4px;">Snippets:</span>
+              <button class="snippet-btn" data-sql="SELECT * FROM users;">Users</button>
+              <button class="snippet-btn" data-sql="SELECT * FROM projects;">Projects</button>
+              <button class="snippet-btn" data-sql="SELECT u.name, u.role, p.title, p.budget FROM users u JOIN projects p ON u.id = p.user_id;">Join Summary</button>
+              <button class="snippet-btn" data-sql="SELECT status, COUNT(*) as total, SUM(budget) as total_budget FROM projects GROUP BY status;">Budget Stats</button>
+            </div>
+            <div>
+              <button id="btn-clear-query" class="btn btn-sm">Clear</button>
+            </div>
+          </div>
+          <textarea id="sql-query-input" class="editor-textarea" spellcheck="false" placeholder="Write SQL query here... (e.g. SELECT * FROM users;)"></textarea>
+        </section>
+
+        <!-- Results Grid Pane -->
+        <section class="results-pane">
+          <div class="results-header">
+            <div class="results-tabs">
+              <div class="results-tab active" data-view="view-table">Data Grid</div>
+              <div class="results-tab" data-view="view-json">JSON Output</div>
+            </div>
+            <div id="results-meta" class="results-meta">
+              <span class="meta-item">Ready</span>
+            </div>
+          </div>
+          <div class="results-content">
+            <div id="view-table" class="results-view active">
+              <div id="data-grid-root"></div>
+            </div>
+            <div id="view-json" class="results-view">
+              <pre id="json-results-root" class="json-view-pre">[]</pre>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Status Bar -->
+    <footer id="status-bar-root" class="status-bar"></footer>
+
+    <!-- Import JSON Modal -->
+    <div id="import-modal" class="modal-backdrop">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3>📥 Import JSON Array to SQLite</h3>
+          <button id="close-import-modal" class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="import-table-name">Target Table Name:</label>
+            <input type="text" id="import-table-name" class="form-input" value="imported_data" placeholder="e.g. mock_customers" />
+          </div>
+          <div class="form-group">
+            <label for="import-json-data">JSON Array (e.g. from Mockaroo WebMCP):</label>
+            <textarea id="import-json-data" class="form-textarea" placeholder='[&#10;  { "id": 1, "name": "Alpha", "revenue": 1200.5 },&#10;  { "id": 2, "name": "Beta", "revenue": 3400.0 }&#10;]'></textarea>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="import-auto-create" checked />
+            <label for="import-auto-create">Auto-create table structure based on JSON keys & inferred data types</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="btn-do-import" class="btn btn-primary">Import to SQLite</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

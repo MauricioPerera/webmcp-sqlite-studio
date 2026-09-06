@@ -1,136 +1,564 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebMCP SQLite Studio</title>
+    <title>WebMCP SQLite Studio — Base de Datos Relacional en tu Navegador</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗄️</text></svg>" />
-    <link rel="stylesheet" href="./src/style.css" />
+    <link rel="stylesheet" href="./src/landing.css" />
   </head>
   <body>
-    <!-- Top Navbar -->
-    <header>
-      <div class="logo-area">
-        <span class="logo-icon">🗄️</span>
-        <span class="logo-title">WebMCP SQLite Studio</span>
-        <span class="logo-badge">W3C WebMCP &bull; sql.js WASM</span>
-      </div>
-      <div class="header-actions">
-        <button id="btn-run-top" class="btn btn-primary">
-          <span>▶</span> Run Query (Ctrl+Enter)
-        </button>
-        <button id="btn-import-modal" class="btn">
-          <span>📥</span> Import JSON
-        </button>
-        <button id="btn-export-sql" class="btn">
-          <span>💾</span> Export SQL Dump
-        </button>
-        <button id="btn-export-db" class="btn">
-          <span>📦</span> Export .sqlite
-        </button>
-        <button id="btn-reset-db" class="btn">
-          <span>🔄</span> Reset
-        </button>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="nav-container">
+        <a href="./index.html" class="brand">
+          <span class="brand-icon">🗄️</span>
+          <span class="brand-title">WebMCP SQLite Studio</span>
+          <span class="brand-badge">W3C Draft • WASM</span>
+        </a>
+        <nav class="nav-links">
+          <a href="#que-es">¿Qué es?</a>
+          <a href="#herramientas">Herramientas (7)</a>
+          <a href="#ventajas">Ventajas vs Cloud</a>
+          <a href="#como-usar">Cómo Usar</a>
+          <a href="#perfiles">Casos de Uso</a>
+          <a href="#faq">Preguntas</a>
+        </nav>
+        <div class="nav-actions" style="display: flex; align-items: center;">
+          <div class="lang-selector" id="lang-selector">
+            <button class="lang-btn active" data-lang="es" title="Español">🇪🇸 ES</button>
+            <button class="lang-btn" data-lang="en" title="English">🇺🇸 EN</button>
+            <button class="lang-btn" data-lang="pt" title="Português">🇧🇷 PT</button>
+          </div>
+          <a href="./studio.html" class="btn btn-primary btn-nav" id="nav-btn-studio">
+            <span>🗄️</span> <span id="txt-nav-open">Abrir SQLite Studio</span>
+          </a>
+        </div>
       </div>
     </header>
 
-    <!-- Main Body Container -->
-    <div class="app-body">
-      <!-- Left Sidebar -->
-      <aside class="sidebar">
-        <div class="sidebar-tabs">
-          <div class="sidebar-tab active" data-tab="tab-schema">📊 Schema</div>
-          <div class="sidebar-tab" data-tab="tab-webmcp">⚡ WebMCP (7)</div>
-          <div class="sidebar-tab" data-tab="tab-logs">📜 Invocations</div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-pill">
+          <span class="pill-sparkle">✨</span>
+          <span>Base de Datos Relacional WebAssembly • 100% In-Browser</span>
         </div>
-        <div class="sidebar-content">
-          <!-- Schema Panel -->
-          <div id="tab-schema" class="sidebar-panel active">
-            <div id="schema-tree-root"></div>
+        <h1 class="hero-title">
+          Tu base de datos SQL completa, veloz y privada. <br class="desktop-only" />
+          <span class="gradient-text">Directamente en tu navegador.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Impulsada por SQLite 3 y WebAssembly. Sin servidores que configurar, sin cobros sorpresa en la nube y con 7 herramientas nativas WebMCP para que los Agentes de IA interactúen con tus datos al instante.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="./studio.html" class="btn btn-hero-primary">
+            <span class="cta-icon">🗄️</span>
+            <div class="cta-text">
+              <strong>Abrir WebMCP SQLite Studio</strong>
+              <span>Editor SQL interactivo, visor de tablas y servidor WebMCP</span>
+            </div>
+          </a>
+          <a href="https://mauricioperera.github.io/webmcp-code-studio/" target="_blank" rel="noopener" class="btn btn-hero-secondary">
+            <span class="cta-icon">💻</span>
+            <div class="cta-text">
+              <strong>WebMCP Code Studio</strong>
+              <span>IDE web completo con VFS y terminal Unix</span>
+            </div>
+          </a>
+          <a href="https://mauricioperera.github.io/mockaroo-webmcp/" target="_blank" rel="noopener" class="btn btn-hero-secondary">
+            <span class="cta-icon">📊</span>
+            <div class="cta-text">
+              <strong>Mockaroo WebMCP</strong>
+              <span>Generador de datos sintéticos y mocks</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Live Capabilities Bar -->
+        <div class="capabilities-bar">
+          <div class="cap-item"><span class="cap-dot green"></span> <strong>0 Instalación:</strong> Abre el navegador y ejecuta SQL en 1 segundo</div>
+          <div class="cap-item"><span class="cap-dot green"></span> <strong>100% Privado:</strong> Tus tablas y datos nunca salen de tu máquina</div>
+          <div class="cap-item"><span class="cap-dot green"></span> <strong>$0 Costo:</strong> Sin facturas mensuales de AWS, Supabase o Neon</div>
+          <div class="cap-item"><span class="cap-dot green"></span> <strong>Ultra Rápido:</strong> Consultas en memoria en &lt;1 ms (WASM)</div>
+        </div>
+
+        <!-- Interactive Live SQL Showcase Preview -->
+        <div class="showcase-container">
+          <div class="showcase-header">
+            <div class="window-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="window-title">sqlite-wasm-studio -- In-Memory Engine</span>
+            <div class="wasm-live-badge">⚡ WASM SQLite 3.45 • 0.42 ms</div>
           </div>
-          <!-- WebMCP Tools Panel -->
-          <div id="tab-webmcp" class="sidebar-panel">
-            <div id="webmcp-tools-root"></div>
-          </div>
-          <!-- Logs Panel -->
-          <div id="tab-logs" class="sidebar-panel">
-            <div id="webmcp-logs-root"></div>
+          <div class="showcase-body">
+            <div class="sql-prompt-line">
+              <span>▶</span>
+              <span>Consulta SQL Relacional (JOIN con Agregación):</span>
+            </div>
+            <div class="sql-code-box"><span class="sql-kw">SELECT</span> u.name, u.role, p.title <span class="sql-kw">AS</span> project, p.budget
+<span class="sql-kw">FROM</span> <span class="sql-tbl">users</span> u
+<span class="sql-kw">JOIN</span> <span class="sql-tbl">projects</span> p <span class="sql-kw">ON</span> u.id = p.user_id
+<span class="sql-kw">WHERE</span> p.budget &gt; <span class="sql-str">15000</span>
+<span class="sql-kw">ORDER BY</span> p.budget <span class="sql-kw">DESC</span>;</div>
+            <div class="showcase-results">
+              <div class="results-meta-bar">
+                <span>4 filas devueltas en 0.42 ms (WASM) • Memoria: 1.2 MB</span>
+                <span>STATUS: OK</span>
+              </div>
+              <table class="preview-table">
+                <thead>
+                  <tr>
+                    <th>Usuario</th>
+                    <th>Rol</th>
+                    <th>Proyecto Activo</th>
+                    <th>Presupuesto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Carlos Mendoza</strong></td>
+                    <td>Tech Lead</td>
+                    <td>Sistema de Pagos WebMCP</td>
+                    <td>$45,000.00</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Lucía Fernandez</strong></td>
+                    <td>Data Scientist</td>
+                    <td>Pipeline de Embeddings Vectoriales</td>
+                    <td>$32,500.00</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Mauricio Perera</strong></td>
+                    <td>Solutions Architect</td>
+                    <td>Suite WebMCP Multiagente</td>
+                    <td>$28,000.00</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Ana Gómez</strong></td>
+                    <td>Product Manager</td>
+                    <td>Dashboard Analítico E2E</td>
+                    <td>$18,900.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </aside>
 
-      <!-- Main Workspace (Editor + Results Grid) -->
-      <main class="main-workspace">
-        <!-- SQL Editor Pane -->
-        <section class="editor-pane">
-          <div class="editor-toolbar">
-            <div class="editor-snippets">
-              <span style="font-size: 11px; color: #888; margin-right: 4px;">Snippets:</span>
-              <button class="snippet-btn" data-sql="SELECT * FROM users;">Users</button>
-              <button class="snippet-btn" data-sql="SELECT * FROM projects;">Projects</button>
-              <button class="snippet-btn" data-sql="SELECT u.name, u.role, p.title, p.budget FROM users u JOIN projects p ON u.id = p.user_id;">Join Summary</button>
-              <button class="snippet-btn" data-sql="SELECT status, COUNT(*) as total, SUM(budget) as total_budget FROM projects GROUP BY status;">Budget Stats</button>
-            </div>
-            <div>
-              <button id="btn-clear-query" class="btn btn-sm">Clear</button>
-            </div>
-          </div>
-          <textarea id="sql-query-input" class="editor-textarea" spellcheck="false" placeholder="Write SQL query here... (e.g. SELECT * FROM users;)"></textarea>
-        </section>
+      </div>
+    </section>
 
-        <!-- Results Grid Pane -->
-        <section class="results-pane">
-          <div class="results-header">
-            <div class="results-tabs">
-              <div class="results-tab active" data-view="view-table">Data Grid</div>
-              <div class="results-tab" data-view="view-json">JSON Output</div>
-            </div>
-            <div id="results-meta" class="results-meta">
-              <span class="meta-item">Ready</span>
-            </div>
-          </div>
-          <div class="results-content">
-            <div id="view-table" class="results-view active">
-              <div id="data-grid-root"></div>
-            </div>
-            <div id="view-json" class="results-view">
-              <pre id="json-results-root" class="json-view-pre">[]</pre>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
-
-    <!-- Status Bar -->
-    <footer id="status-bar-root" class="status-bar"></footer>
-
-    <!-- Import JSON Modal -->
-    <div id="import-modal" class="modal-backdrop">
-      <div class="modal-dialog">
-        <div class="modal-header">
-          <h3>📥 Import JSON Array to SQLite</h3>
-          <button id="close-import-modal" class="modal-close">&times;</button>
+    <!-- Section: Paradigm Shift -->
+    <section id="que-es" class="section section-dark">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">EL CAMBIO DE PARADIGMA</span>
+          <h2 class="section-title">¿Por qué una Base de Datos en el Navegador cambia el juego?</h2>
+          <p class="section-subtitle">
+            Hasta hoy, trabajar con bases de datos SQL requería configurar servidores remotos, lidiar con credenciales, pagar suscripciones y arriesgar la privacidad de tus datos sensibles.
+          </p>
         </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="import-table-name">Target Table Name:</label>
-            <input type="text" id="import-table-name" class="form-input" value="imported_data" placeholder="e.g. mock_customers" />
+
+        <div class="paradigm-grid">
+          <div class="paradigm-card old-way">
+            <div class="card-status-badge old">El Enfoque Tradicional en la Nube</div>
+            <h3>Antes: Complejidad, Costos y Fuga de Datos</h3>
+            <ul class="feature-list">
+              <li>❌ <strong>Configuración tediosa:</strong> Levantar contenedores Docker, abrir puertos o configurar cadenas de conexión con contraseñas.</li>
+              <li>❌ <strong>Facturas recurrentes:</strong> Pagar mensualmente por instancias DBaaS que cobran por cómputo, almacenamiento y ancho de banda.</li>
+              <li>❌ <strong>Riesgo de privacidad:</strong> Subir información confidencial de clientes, finanzas o inventarios a servidores de terceros.</li>
+              <li>❌ <strong>Latencia de red:</strong> Cada consulta debe viajar por internet hasta un centro de datos lejano antes de mostrar resultados.</li>
+            </ul>
           </div>
-          <div class="form-group">
-            <label for="import-json-data">JSON Array (e.g. from Mockaroo WebMCP):</label>
-            <textarea id="import-json-data" class="form-textarea" placeholder='[&#10;  { "id": 1, "name": "Alpha", "revenue": 1200.5 },&#10;  { "id": 2, "name": "Beta", "revenue": 3400.0 }&#10;]'></textarea>
+
+          <div class="paradigm-card new-way highlight-border">
+            <div class="card-status-badge new">La Revolución WebMCP SQLite (Local-First)</div>
+            <h3>Ahora: SQLite 3 WASM 100% en tu Dispositivo</h3>
+            <ul class="feature-list">
+              <li>✅ <strong>Cero instalación y cero fricción:</strong> Entras al enlace y tienes un motor SQL completo listo para usar en 1 segundo.</li>
+              <li>✅ <strong>Privacidad absoluta (Zero-Knowledge):</strong> Tus datos viven exclusivamente en la memoria de tu navegador; nada viaja a ningún servidor.</li>
+              <li>✅ <strong>Velocidad sub-milisegundo:</strong> Consultas procesadas directamente en tu CPU mediante WebAssembly a velocidades de microsegundos.</li>
+              <li>✅ <strong>Agentes de IA habilitados:</strong> 7 herramientas nativas WebMCP para que asistentes como Claude, GPT o Gemini consulten y gestionen datos.</li>
+            </ul>
           </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="import-auto-create" checked />
-            <label for="import-auto-create">Auto-create table structure based on JSON keys & inferred data types</label>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button id="btn-do-import" class="btn btn-primary">Import to SQLite</button>
         </div>
       </div>
-    </div>
+    </section>
 
-    <script type="module" src="./src/main.ts"></script>
+    <!-- Section: 7 WebMCP Tools -->
+    <section id="herramientas" class="section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">ESTÁNDAR WEBMCP (7 HERRAMIENTAS CLIENTE)</span>
+          <h2 class="section-title">Poder Relacional Nativo para Agentes de Inteligencia Artificial</h2>
+          <p class="section-subtitle">
+            WebMCP SQLite Studio implementa el protocolo W3C WebMCP para exponer una suite integral de operaciones SQL que cualquier agente o script puede invocar de forma segura.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <!-- Tool 1 -->
+          <div class="tool-card">
+            <div class="tool-card-header">
+              <span class="tool-badge-mcp">Tool #1</span>
+              <span style="font-size: 20px;">⚡</span>
+            </div>
+            <h3 class="tool-card-title">db_execute_query</h3>
+            <p class="tool-card-desc">Ejecuta cualquier sentencia SQL (SELECT, INSERT, UPDATE, DELETE, DDL) con rollback transaccional automático en caso de fallo.</p>
+            <div class="tool-card-footer">
+              <a href="./studio.html" class="btn-tool-action">Probar en SQLite Studio &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Tool 2 -->
+          <div class="tool-card">
+            <div class="tool-card-header">
+              <span class="tool-badge-mcp">Tool #2</span>
+              <span style="font-size: 20px;">📊</span>
+            </div>
+            <h3 class="tool-card-title">db_list_tables</h3>
+            <p class="tool-card-desc">Descubre dinámicamente todas las tablas, vistas del sistema y conteo de registros en tiempo real.</p>
+            <div class="tool-card-footer">
+              <a href="./studio.html" class="btn-tool-action">Probar en SQLite Studio &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Tool 3 -->
+          <div class="tool-card">
+            <div class="tool-card-header">
+              <span class="tool-badge-mcp">Tool #3</span>
+              <span style="font-size: 20px;">🔍</span>
+            </div>
+            <h3 class="tool-card-title">db_describe_table</h3>
+            <p class="tool-card-desc">Inspecciona a fondo el esquema: nombres de columnas, tipos de datos, llaves primarias y restricciones NOT NULL.</p>
+            <div class="tool-card-footer">
+              <a href="./studio.html" class="btn-tool-action">Probar en SQLite Studio &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Tool 4 -->
+          <div class="tool-card">
+            <div class="tool-card-header">
+              <span class="tool-badge-mcp">Tool #4</span>
+              <span style="font-size: 20px;">📥</span>
+            </div>
+            <h3 class="tool-card-title">db_import_json</h3>
+            <p class="tool-card-desc">Ingiere arreglos JSON con inferencia automática de esquemas y tipos de datos (INTEGER, REAL, TEXT).</p>
+            <div class="tool-card-footer">
+              <a href="./studio.html" class="btn-tool-action">Probar en SQLite Studio &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Tool 5 -->
+          <div class="tool-card">
+            <div class="tool-card-header">
+              <span class="tool-badge-mcp">Tool #5</span>
+              <span style="font-size: 20px;">📤</span>
+            </div>
+            <h3 class="tool-card-title">db_export_json</h3>
+            <p class="tool-card-desc">Extrae cualquier consulta o tabla completa en formato JSON estructurado listo para el razonamiento de LLMs.</p>
+            <div class="tool-card-footer">
+              <a href="./studio.html" class="btn-tool-action">Probar en SQLite Studio &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Tool 6 -->
+          <div class="tool-card">
+            <div class="tool-card-header">
+              <span class="tool-badge-mcp">Tool #6</span>
+              <span style="font-size: 20px;">📈</span>
+            </div>
+            <h3 class="tool-card-title">db_get_stats</h3>
+            <p class="tool-card-desc">Audita el estado del motor WASM: memoria consumida, páginas activas, tablas totales y tamaño estimado.</p>
+            <div class="tool-card-footer">
+              <a href="./studio.html" class="btn-tool-action">Probar en SQLite Studio &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Tool 7 -->
+          <div class="tool-card">
+            <div class="tool-card-header">
+              <span class="tool-badge-mcp">Tool #7</span>
+              <span style="font-size: 20px;">🧹</span>
+            </div>
+            <h3 class="tool-card-title">db_optimize</h3>
+            <p class="tool-card-desc">Aplica mantenimiento de alto rendimiento: ejecuta VACUUM, ANALYZE y verificaciones de integridad PRAGMA.</p>
+            <div class="tool-card-footer">
+              <a href="./studio.html" class="btn-tool-action">Probar en SQLite Studio &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Comparison Matrix -->
+    <section id="ventajas" class="section section-dark">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">TABLA COMPARATIVA</span>
+          <h2 class="section-title">WebMCP SQLite Studio vs Otras Alternativas</h2>
+          <p class="section-subtitle">
+            Compara objetivamente cómo se posiciona nuestra solución frente a servidores cloud, programas de escritorio y hojas de cálculo.
+          </p>
+        </div>
+
+        <div class="comparison-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Característica</th>
+                <th>Bases Cloud (Supabase/RDS)</th>
+                <th>Apps Desktop (DBeaver)</th>
+                <th>Hojas de Cálculo (Airtable/Excel)</th>
+                <th class="highlight-col">WebMCP SQLite Studio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Tiempo de Inicio</strong></td>
+                <td>Minutos (Crear cuenta, cluster)</td>
+                <td>10-20 min (Descarga 200MB, Java)</td>
+                <td>1-2 min (Registro web)</td>
+                <td class="highlight-col"><strong class="text-green">⚡ 1 segundo (Solo abre la web)</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Costo Mensual</strong></td>
+                <td>$15 a $100+ USD / mes</td>
+                <td>Gratis a $199 USD (licencia)</td>
+                <td>$10 a $45 USD / usuario</td>
+                <td class="highlight-col"><strong class="text-green">🎉 $0.00 (Gratis y Libre)</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Privacidad de Datos</strong></td>
+                <td>En servidores de terceros</td>
+                <td>Local en tu equipo</td>
+                <td>En la nube de la empresa</td>
+                <td class="highlight-col"><strong class="text-green">🔒 100% Local en Navegador</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Latencia de Consulta</strong></td>
+                <td>50 - 250 ms (Latencia de red)</td>
+                <td>Variable según conexión</td>
+                <td>Lento con &gt;10,000 filas</td>
+                <td class="highlight-col"><strong class="text-green">🚀 &lt; 1 ms (WASM en memoria)</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Herramientas para IA (MCP)</strong></td>
+                <td>Requiere proxies y API keys</td>
+                <td>No diseñado para agentes web</td>
+                <td>Plugins limitados y costosos</td>
+                <td class="highlight-col"><strong class="text-green">🤖 7 Herramientas Nativas WebMCP</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Exportación y Portabilidad</strong></td>
+                <td>Dumps SQL complejos</td>
+                <td>Exportación local</td>
+                <td>Solo CSV / XLSX planos</td>
+                <td class="highlight-col"><strong class="text-green">📦 SQL Dump + .sqlite Binario</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Step-by-Step -->
+    <section id="como-usar" class="section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">PASO A PASO</span>
+          <h2 class="section-title">¿Cómo empezar en 3 simples pasos?</h2>
+          <p class="section-subtitle">
+            No necesitas ser programador ni administrador de bases de datos para aprovechar el poder de SQL.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <h3>Abre el Studio y Carga tus Datos</h3>
+            <p>Entra a SQLite Studio. Puedes usar la base de datos preconfigurada de usuarios y proyectos, o pegar un arreglo JSON para que el sistema cree las tablas automáticamente.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <h3>Ejecuta Consultas o Conecta tu Agente IA</h3>
+            <p>Escribe consultas SQL como SELECT, JOINs o agregaciones con ayuda de los snippets rápidos, o deja que un Agente WebMCP interactúe con la base de datos de forma autónoma.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <h3>Exporta tu Base de Datos en Cualquier Formato</h3>
+            <p>Descarga un archivo .sql con todas las instrucciones de creación, exporta la base de datos binaria .sqlite para usarla en cualquier backend, o copia los resultados en JSON.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Roles & Use Cases -->
+    <section id="perfiles" class="section section-dark">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">CASOS DE USO POR PERFIL</span>
+          <h2 class="section-title">Diseñado para Potenciar a Todo Tipo de Equipos</h2>
+          <p class="section-subtitle">
+            Descubre cómo personas con distintos niveles técnicos resuelven problemas reales con WebMCP SQLite Studio.
+          </p>
+        </div>
+
+        <div class="role-tabs-container">
+          <div class="role-tab-buttons">
+            <button class="role-tab active" data-role="analyst">📊 Analistas de Negocio</button>
+            <button class="role-tab" data-role="data">🧪 Data Science & ML</button>
+            <button class="role-tab" data-role="edu">🎓 Estudiantes & Docentes</button>
+            <button class="role-tab" data-role="dev">💻 Devs & Creadores de IA</button>
+          </div>
+
+          <div class="role-detail-card">
+            <h3 id="role-title">Analistas Financieros y de Negocio</h3>
+            <p class="role-quote" id="role-quote">«Puedo cruzar reportes de ventas y presupuestos al instante sin depender del equipo de TI ni subir datos confidenciales a la nube.»</p>
+            <ul class="role-points" id="role-points">
+              <li>Limpia y analiza archivos pegando JSON o CSV directamente en el navegador con detección automática de esquemas.</li>
+              <li>Ejecuta filtros complejos, agrupaciones (GROUP BY) y métricas de suma o promedio en menos de 1 milisegundo.</li>
+              <li>Garantía total de privacidad para auditorías, nóminas confidenciales y balances contables.</li>
+            </ul>
+            <div class="role-highlight-box">
+              <strong id="role-benefit-label">Ahorro de Tiempo:</strong>
+              <span id="role-benefit-value">10x más ágil que lidiar con hojas de cálculo sobrecargadas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: FAQ -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">RESOLVEMOS TUS DUDAS</span>
+          <h2 class="section-title">Preguntas Frecuentes</h2>
+          <p class="section-subtitle">
+            Todo lo que necesitas saber sobre la seguridad, tecnología y funcionamiento de WebMCP SQLite Studio.
+          </p>
+        </div>
+
+        <div class="faq-accordion">
+          <!-- Q1 -->
+          <div class="faq-item open">
+            <button class="faq-question">
+              <span>¿Mis datos confidenciales se envían a algún servidor externo?</span>
+              <span class="faq-chevron">&#9662;</span>
+            </button>
+            <div class="faq-answer">
+              <p><strong>Absolutamente no.</strong> WebMCP SQLite Studio corre 100% en tu navegador a través de sql.js (WebAssembly). Tu base de datos reside en la memoria RAM de tu computadora. Cuando cierras la pestaña o reinicias la página, nada queda registrado en servidores externos.</p>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>¿Puedo guardar mi base de datos para usarla más tarde?</span>
+              <span class="faq-chevron">&#9662;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Sí. Tienes dos formas inmediatas: puedes hacer clic en <strong>Export SQL Dump</strong> para descargar un script .sql estándar, o en <strong>Export .sqlite</strong> para descargar el archivo binario SQLite estándar, compatible con cualquier servidor o aplicación móvil.</p>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>¿Qué es WebMCP y cómo lo utilizan los Agentes de IA?</span>
+              <span class="faq-chevron">&#9662;</span>
+            </button>
+            <div class="faq-answer">
+              <p>WebMCP es el estándar propuesto ante el W3C para que las aplicaciones web expongan herramientas directamente a los Agentes de Inteligencia Artificial (en <code>navigator.modelContext</code>). Nuestro estudio expone 7 herramientas nativas para que un agente pueda consultar, crear tablas o extraer datos sin necesidad de backend.</p>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>¿Es compatible con el SQL estándar de la industria?</span>
+              <span class="faq-chevron">&#9662;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Sí, es 100% compatible con el motor oficial de <strong>SQLite 3</strong>. Soporta claves primarias, claves foráneas, restricciones UNIQUE/NOT NULL, transacciones (BEGIN/COMMIT/ROLLBACK), índices, CTEs (WITH) y funciones analíticas de ventana.</p>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>¿Cómo puedo combinarlo con Mockaroo WebMCP o Code Studio?</span>
+              <span class="faq-chevron">&#9662;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Forman una trilogía sinérgica: puedes generar datos sintéticos masivos en <strong>Mockaroo WebMCP</strong>, importarlos en <strong>SQLite Studio</strong> con un solo clic para analizarlos con SQL, y luego construir una aplicación visual conectada a esos datos en <strong>Code Studio</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Banner -->
+    <section class="cta-banner">
+      <div class="container">
+        <h2 class="cta-banner-title">¿Listo para experimentar la base de datos del futuro?</h2>
+        <p class="cta-banner-subtitle">
+          Comienza a explorar, consultar y estructurar tus datos en segundos. Sin cuentas, sin tarjetas y sin descargas.
+        </p>
+        <div class="cta-banner-buttons">
+          <a href="./studio.html" class="btn btn-hero-primary">
+            <span>🚀</span> Abrir SQLite Studio Ahora
+          </a>
+          <a href="https://mauricioperera.github.io/webmcp-code-studio/" target="_blank" rel="noopener" class="btn btn-hero-secondary">
+            <span>💻</span> Explorar Code Studio
+          </a>
+          <a href="https://mauricioperera.github.io/mockaroo-webmcp/" target="_blank" rel="noopener" class="btn btn-hero-secondary">
+            <span>📊</span> Generar Datos con Mockaroo
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <h3><span>🗄️</span> WebMCP SQLite Studio</h3>
+            <p class="footer-text">
+              WebMCP SQLite Studio es una estación de datos relacionales 100% local-first desarrollada bajo la metodología Knowledge-Driven Development (KDD) y el estándar W3C WebMCP.
+            </p>
+          </div>
+          <div class="footer-links-group">
+            <h4>La Trilogía WebMCP</h4>
+            <ul>
+              <li><a href="./studio.html">🗄️ WebMCP SQLite Studio</a></li>
+              <li><a href="https://mauricioperera.github.io/webmcp-code-studio/" target="_blank" rel="noopener">💻 WebMCP Code Studio</a></li>
+              <li><a href="https://mauricioperera.github.io/mockaroo-webmcp/" target="_blank" rel="noopener">📊 Mockaroo WebMCP</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-group">
+            <h4>Recursos y Especificaciones</h4>
+            <ul>
+              <li><a href="https://www.sqlite.org/docs.html" target="_blank" rel="noopener">Documentación SQLite 3</a></li>
+              <li><a href="https://github.com/web-mcp/specification" target="_blank" rel="noopener">Borrador W3C WebMCP</a></li>
+              <li><a href="https://github.com/MauricioPerera/webmcp-sqlite-studio" target="_blank" rel="noopener">Repositorio en GitHub</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 WebMCP Suite • Código Abierto bajo Licencia MIT • Privacidad y Soberanía Total de Datos.</span>
+          <span>Local-First WebAssembly Architecture</span>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="./src/landing.ts"></script>
   </body>
 </html>
