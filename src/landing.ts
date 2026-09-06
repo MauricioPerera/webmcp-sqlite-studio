@@ -312,9 +312,9 @@ function applyTranslations(t: TranslationData) {
 
   const botButtons = document.querySelectorAll('.cta-banner-buttons .btn');
   if (botButtons.length >= 3) {
-    botButtons[0].innerHTML = t.bottomCta.btnStudio;
-    botButtons[1].innerHTML = t.bottomCta.btnCodeStudio;
-    botButtons[2].innerHTML = t.bottomCta.btnMockaroo;
+    botButtons[0].innerHTML = `<span>🚀</span> ${t.bottomCta.btnStudio}`;
+    botButtons[1].innerHTML = `<span>💻</span> ${t.bottomCta.btnCodeStudio}`;
+    botButtons[2].innerHTML = `<span>📊</span> ${t.bottomCta.btnMockaroo}`;
   }
 
   // 11. Footer

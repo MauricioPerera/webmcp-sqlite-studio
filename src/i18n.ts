@@ -206,13 +206,13 @@ export interface TranslationData {
 export const TRANSLATIONS: Record<Language, TranslationData> = {
   es: {
     nav: {
-      whatIs: "¿Qué es SQLite Studio?",
-      tools: "Herramientas WebMCP (7)",
-      advantages: "Ventajas vs Cloud",
-      howTo: "Cómo Usar",
+      whatIs: "¿Qué es?",
+      tools: "Herramientas",
+      advantages: "Ventajas",
+      howTo: "Guía",
       useCases: "Casos de Uso",
-      faq: "Preguntas",
-      openStudio: "Abrir SQLite Studio",
+      faq: "FAQ",
+      openStudio: "Abrir Studio",
     },
     hero: {
       pill: "Base de Datos Relacional WebAssembly • 100% In-Browser",
@@ -386,9 +386,9 @@ export const TRANSLATIONS: Record<Language, TranslationData> = {
     bottomCta: {
       title: "¿Listo para experimentar la base de datos del futuro?",
       subtitle: "Comienza a explorar, consultar y estructurar tus datos en segundos. Sin cuentas, sin tarjetas y sin descargas.",
-      btnStudio: "🚀 Abrir SQLite Studio Ahora",
-      btnCodeStudio: "💻 Explorar Code Studio",
-      btnMockaroo: "📊 Generar Datos con Mockaroo",
+      btnStudio: "Abrir SQLite Studio Ahora",
+      btnCodeStudio: "Explorar Code Studio",
+      btnMockaroo: "Generar Datos con Mockaroo",
     },
     footer: {
       text: "WebMCP SQLite Studio es una estación de datos relacionales 100% local-first desarrollada bajo la metodología Knowledge-Driven Development (KDD) y el estándar W3C WebMCP.",
@@ -406,13 +406,13 @@ export const TRANSLATIONS: Record<Language, TranslationData> = {
   },
   en: {
     nav: {
-      whatIs: "What is SQLite Studio?",
-      tools: "WebMCP Tools (7)",
-      advantages: "Advantages vs Cloud",
-      howTo: "How to Use",
+      whatIs: "Overview",
+      tools: "Tools",
+      advantages: "Advantages",
+      howTo: "Guide",
       useCases: "Use Cases",
       faq: "FAQ",
-      openStudio: "Open SQLite Studio",
+      openStudio: "Open Studio",
     },
     hero: {
       pill: "WebAssembly Relational Database • 100% In-Browser",
@@ -586,9 +586,9 @@ export const TRANSLATIONS: Record<Language, TranslationData> = {
     bottomCta: {
       title: "Ready to experience the future of databases?",
       subtitle: "Start exploring, querying, and structuring relational data in seconds. No signups, no credit cards, no downloads.",
-      btnStudio: "🚀 Launch SQLite Studio Now",
-      btnCodeStudio: "💻 Explore Code Studio",
-      btnMockaroo: "📊 Generate Data with Mockaroo",
+      btnStudio: "Launch SQLite Studio Now",
+      btnCodeStudio: "Explore Code Studio",
+      btnMockaroo: "Generate Data with Mockaroo",
     },
     footer: {
       text: "WebMCP SQLite Studio is a 100% local-first relational data workstation developed under Knowledge-Driven Development (KDD) and the W3C WebMCP standard.",
@@ -606,13 +606,13 @@ export const TRANSLATIONS: Record<Language, TranslationData> = {
   },
   pt: {
     nav: {
-      whatIs: "O que é SQLite Studio?",
-      tools: "Ferramentas WebMCP (7)",
-      advantages: "Vantagens vs Cloud",
-      howTo: "Como Usar",
+      whatIs: "O que é?",
+      tools: "Ferramentas",
+      advantages: "Vantagens",
+      howTo: "Guia",
       useCases: "Casos de Uso",
-      faq: "Perguntas",
-      openStudio: "Abrir SQLite Studio",
+      faq: "FAQ",
+      openStudio: "Abrir Studio",
     },
     hero: {
       pill: "Banco de Dados Relacional WebAssembly • 100% In-Browser",
@@ -770,7 +770,7 @@ export const TRANSLATIONS: Record<Language, TranslationData> = {
     },
     faq: {
       tag: "TIRANDO DÚVIDAS",
-      title: "Perguntas Frequentes",
+      title: "Perguntas Frecuentes",
       subtitle: "Tudo o que você precisa saber sobre segurança, tecnologia e recursos do WebMCP SQLite Studio.",
       q1: "Meus dados confidenciais são enviados para algum servidor externo?",
       a1: "<strong>Nunca.</strong> O WebMCP SQLite Studio roda 100% no seu navegador via sql.js (WebAssembly). Seu banco de dados fica na memória RAM do seu próprio computador. Ao fechar a aba ou atualizar a página, nada fica em servidores remotos.",
@@ -786,9 +786,9 @@ export const TRANSLATIONS: Record<Language, TranslationData> = {
     bottomCta: {
       title: "Pronto para experimentar o banco de dados do futuro?",
       subtitle: "Comece a explorar, consultar e estruturar dados relacionais em segundos. Sem cadastro, sem cartão e sem downloads.",
-      btnStudio: "🚀 Abrir SQLite Studio Agora",
-      btnCodeStudio: "💻 Explorar Code Studio",
-      btnMockaroo: "📊 Gerar Dados com Mockaroo",
+      btnStudio: "Abrir SQLite Studio Agora",
+      btnCodeStudio: "Explorar Code Studio",
+      btnMockaroo: "Gerar Dados com Mockaroo",
     },
     footer: {
       text: "O WebMCP SQLite Studio é uma estação de dados relacionais 100% local-first desenvolvida sob a metodologia Knowledge-Driven Development (KDD) e o padrão W3C WebMCP.",

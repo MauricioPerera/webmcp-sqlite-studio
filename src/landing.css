@@ -6,9 +6,9 @@
   --bg-elevated: #1e293b;
   --border-color: #23314d;
   --border-glow: #10b981;
-  --text-main: #94a3b8;
+  --text-main: #cbd5e1;
   --text-bright: #f8fafc;
-  --text-muted: #64748b;
+  --text-muted: #94a3b8;
   --primary-emerald: #059669;
   --primary-hover: #047857;
   --accent-cyan: #06b6d4;
@@ -47,7 +47,7 @@ a {
 }
 
 a:hover {
-  color: #34d399;
+  color: #6ee7b7;
 }
 
 .gradient-text {
@@ -122,12 +122,13 @@ a:hover {
 }
 
 .nav-container {
-  max-width: 1160px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .brand {
@@ -150,7 +151,7 @@ a:hover {
 .brand-badge {
   font-size: 10px;
   background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
+  color: #6ee7b7;
   border: 1px solid rgba(16, 185, 129, 0.3);
   padding: 2px 7px;
   border-radius: 4px;
@@ -161,13 +162,17 @@ a:hover {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 14px;
+  flex-shrink: 0;
 }
 
 .nav-links a {
   color: var(--text-main);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
+  white-space: nowrap;
+  padding: 4px 6px;
+  border-radius: 4px;
 }
 
 .nav-links a:hover {
@@ -204,7 +209,7 @@ a:hover {
 
 .lang-btn.active {
   background: rgba(16, 185, 129, 0.25);
-  color: #34d399;
+  color: #6ee7b7;
   border: 1px solid rgba(16, 185, 129, 0.4);
 }
 
@@ -408,12 +413,12 @@ a:hover {
 .window-title {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: #94a3b8;
+  color: #cbd5e1;
 }
 
 .wasm-live-badge {
   font-size: 11px;
-  color: #34d399;
+  color: #6ee7b7;
   background: rgba(16, 185, 129, 0.15);
   padding: 2px 8px;
   border-radius: 4px;
@@ -450,7 +455,7 @@ a:hover {
 
 .sql-kw { color: #f43f5e; font-weight: 700; }
 .sql-fn { color: #38bdf8; font-weight: 600; }
-.sql-tbl { color: #34d399; }
+.sql-tbl { color: #6ee7b7; }
 .sql-str { color: #fbbf24; }
 
 .showcase-results {
@@ -463,7 +468,7 @@ a:hover {
   background: #182234;
   padding: 8px 14px;
   font-size: 11px;
-  color: #94a3b8;
+  color: #cbd5e1;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #1e293b;
@@ -485,7 +490,7 @@ a:hover {
 
 .preview-table td {
   padding: 8px 12px;
-  color: #94a3b8;
+  color: #cbd5e1;
   border-bottom: 1px solid #182234;
 }
 
@@ -527,13 +532,13 @@ a:hover {
 
 .card-status-badge.old {
   background: rgba(239, 68, 68, 0.15);
-  color: #f87171;
+  color: #fca5a5;
   border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 .card-status-badge.new {
   background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
+  color: #6ee7b7;
   border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
@@ -597,7 +602,7 @@ a:hover {
 .tool-card-title {
   font-family: var(--font-mono);
   font-size: 16px;
-  color: #34d399;
+  color: #6ee7b7;
   margin-bottom: 10px;
 }
 
@@ -686,7 +691,7 @@ a:hover {
 .step-number {
   font-size: 40px;
   font-weight: 900;
-  color: rgba(16, 185, 129, 0.25);
+  color: rgba(16, 185, 129, 0.5);
   font-family: var(--font-mono);
   margin-bottom: 10px;
   line-height: 1;
@@ -736,7 +741,7 @@ a:hover {
 
 .role-tab.active {
   background: rgba(16, 185, 129, 0.2);
-  color: #34d399;
+  color: #6ee7b7;
   border-color: var(--accent-green);
 }
 
