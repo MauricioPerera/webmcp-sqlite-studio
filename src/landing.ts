@@ -338,7 +338,12 @@ function applyTranslations(t: TranslationData) {
   }
 
   const resLinks = document.querySelectorAll('.footer-links-group:last-of-type a');
-  if (resLinks.length >= 3) {
+  if (resLinks.length >= 4) {
+    resLinks[0].textContent = t.footer.resSqliteDocs;
+    resLinks[1].textContent = t.footer.resW3c;
+    resLinks[2].textContent = t.footer.resLlms;
+    resLinks[3].textContent = t.footer.resGithub;
+  } else if (resLinks.length >= 3) {
     resLinks[0].textContent = t.footer.resSqliteDocs;
     resLinks[1].textContent = t.footer.resW3c;
     resLinks[2].textContent = t.footer.resGithub;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WebMCP SQLite Studio — Base de Datos Relacional en tu Navegador</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗄️</text></svg>" />
+    <link rel="alternate" type="text/plain" href="./llms.txt" title="LLM & Agent Guidance" />
     <link rel="stylesheet" href="./src/landing.css" />
   </head>
   <body>
@@ -208,8 +209,8 @@
               <span class="tool-badge-mcp">Tool #1</span>
               <span style="font-size: 20px;">⚡</span>
             </div>
-            <h3 class="tool-card-title">db_execute_query</h3>
-            <p class="tool-card-desc">Ejecuta cualquier sentencia SQL (SELECT, INSERT, UPDATE, DELETE, DDL) con rollback transaccional automático en caso de fallo.</p>
+            <h3 class="tool-card-title">db_query</h3>
+            <p class="tool-card-desc">Ejecuta consultas SQL SELECT y analíticas con resultados estructurados, conteo de filas y tiempo de ejecución en milisegundos.</p>
             <div class="tool-card-footer">
               <a href="./studio.html" class="btn-tool-action">Probar en SQLite Studio &rarr;</a>
             </div>
@@ -219,10 +220,10 @@
           <div class="tool-card">
             <div class="tool-card-header">
               <span class="tool-badge-mcp">Tool #2</span>
-              <span style="font-size: 20px;">📊</span>
+              <span style="font-size: 20px;">✍️</span>
             </div>
-            <h3 class="tool-card-title">db_list_tables</h3>
-            <p class="tool-card-desc">Descubre dinámicamente todas las tablas, vistas del sistema y conteo de registros en tiempo real.</p>
+            <h3 class="tool-card-title">db_execute</h3>
+            <p class="tool-card-desc">Ejecuta sentencias DDL y DML (CREATE TABLE, INSERT, UPDATE, DELETE, ALTER) con transacciones seguras.</p>
             <div class="tool-card-footer">
               <a href="./studio.html" class="btn-tool-action">Probar en SQLite Studio &rarr;</a>
             </div>
@@ -234,8 +235,8 @@
               <span class="tool-badge-mcp">Tool #3</span>
               <span style="font-size: 20px;">🔍</span>
             </div>
-            <h3 class="tool-card-title">db_describe_table</h3>
-            <p class="tool-card-desc">Inspecciona a fondo el esquema: nombres de columnas, tipos de datos, llaves primarias y restricciones NOT NULL.</p>
+            <h3 class="tool-card-title">db_get_schema</h3>
+            <p class="tool-card-desc">Inspecciona el esquema completo: tablas, vistas, columnas, tipos de datos, llaves primarias y conteo de filas.</p>
             <div class="tool-card-footer">
               <a href="./studio.html" class="btn-tool-action">Probar en SQLite Studio &rarr;</a>
             </div>
@@ -271,10 +272,10 @@
           <div class="tool-card">
             <div class="tool-card-header">
               <span class="tool-badge-mcp">Tool #6</span>
-              <span style="font-size: 20px;">📈</span>
+              <span style="font-size: 20px;">💾</span>
             </div>
-            <h3 class="tool-card-title">db_get_stats</h3>
-            <p class="tool-card-desc">Audita el estado del motor WASM: memoria consumida, páginas activas, tablas totales y tamaño estimado.</p>
+            <h3 class="tool-card-title">db_export_sql</h3>
+            <p class="tool-card-desc">Genera un volcado SQL portable completo con sentencias DDL CREATE TABLE y DML INSERT para todas las tablas.</p>
             <div class="tool-card-footer">
               <a href="./studio.html" class="btn-tool-action">Probar en SQLite Studio &rarr;</a>
             </div>
@@ -284,10 +285,10 @@
           <div class="tool-card">
             <div class="tool-card-header">
               <span class="tool-badge-mcp">Tool #7</span>
-              <span style="font-size: 20px;">🧹</span>
+              <span style="font-size: 20px;">👁️</span>
             </div>
-            <h3 class="tool-card-title">db_optimize</h3>
-            <p class="tool-card-desc">Aplica mantenimiento de alto rendimiento: ejecuta VACUUM, ANALYZE y verificaciones de integridad PRAGMA.</p>
+            <h3 class="tool-card-title">db_table_preview</h3>
+            <p class="tool-card-desc">Obtiene una vista previa paginada de registros de una tabla con límite y desplazamiento configurables.</p>
             <div class="tool-card-footer">
               <a href="./studio.html" class="btn-tool-action">Probar en SQLite Studio &rarr;</a>
             </div>
@@ -548,6 +549,7 @@
             <ul>
               <li><a href="https://www.sqlite.org/docs.html" target="_blank" rel="noopener">Documentación SQLite 3</a></li>
               <li><a href="https://github.com/web-mcp/specification" target="_blank" rel="noopener">Borrador W3C WebMCP</a></li>
+              <li><a href="./llms.txt" target="_blank">Especificación LLM (llms.txt)</a></li>
               <li><a href="https://github.com/MauricioPerera/webmcp-sqlite-studio" target="_blank" rel="noopener">Repositorio en GitHub</a></li>
             </ul>
           </div>
