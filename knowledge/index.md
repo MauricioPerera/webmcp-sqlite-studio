@@ -17,3 +17,4 @@ Bienvenido al índice central de la base de conocimiento de **WebMCP SQLite Stud
 ## 4. Guías y Metodología
 - [Guía y Niveles de Validación KDD](./validacion.md)
 - [Glosario de Términos](./glosario.md)
+- [Auditoría de Pruebas de Estrés y Resiliencia](./qa-stress-audit.md)
