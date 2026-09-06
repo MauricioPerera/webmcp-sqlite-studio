@@ -1,0 +1,53 @@
+# WebMCP SQLite Studio
+> 100% Client-Side In-Memory Relational Database Engine with W3C WebMCP Native Agent Tools.
+
+WebMCP SQLite Studio runs SQLite 3 directly inside modern web browsers compiled to WebAssembly (via sql.js). It exposes 7 standard database manipulation and query tools to AI agents over `window.modelContext` and `document.modelContext`.
+
+## Live URL
+https://mauricioperera.github.io/webmcp-sqlite-studio/
+
+## Available WebMCP Tools
+
+### 1. `db_query`
+Executes an analytical or read-only SQL query and returns columns, rows, rowCount, and executionTimeMs.
+- Parameters:
+  - `sql` (string, required): The SQL SELECT query.
+  - `params` (array, optional): Positional query parameters.
+
+### 2. `db_execute`
+Executes a DDL or DML SQL statement (CREATE TABLE, INSERT, UPDATE, DELETE, ALTER).
+- Parameters:
+  - `sql` (string, required): The SQL statement.
+  - `params` (array, optional): Positional statement parameters.
+
+### 3. `db_get_schema`
+Inspects the full database schema, returning tables, views, columns, types, primary keys, and row counts.
+- Parameters: none.
+
+### 4. `db_import_json`
+Imports an array of JSON row objects into a SQLite table, optionally auto-creating the table with inferred data types.
+- Parameters:
+  - `tableName` (string, required): Target table name.
+  - `data` (array of objects, required): Array of records.
+  - `autoCreateTable` (boolean, optional, default true): Auto create table if missing.
+
+### 5. `db_export_json`
+Exports an entire table or custom SELECT query as a JSON array of objects.
+- Parameters:
+  - `tableOrSql` (string, required): Table name or SQL SELECT query.
+
+### 6. `db_export_sql`
+Generates a complete, portable SQL dump containing DDL CREATE TABLE and DML INSERT statements.
+- Parameters: none.
+
+### 7. `db_table_preview`
+Fetches a paginated preview of records from a specific table with limit and offset.
+- Parameters:
+  - `tableName` (string, required): Table name.
+  - `limit` (number, optional, default 50): Max rows.
+  - `offset` (number, optional, default 0): Rows to skip.
+
+## Trilogy Synergy
+- **Generator**: [Mockaroo Static WebMCP](https://mauricioperera.github.io/mockaroo-webmcp/) generates synthetic datasets.
+- **Database**: [WebMCP SQLite Studio](https://mauricioperera.github.io/webmcp-sqlite-studio/) stores, queries, and aggregates relational data.
+- **Code Studio**: [WebMCP Code Studio](https://mauricioperera.github.io/webmcp-code-studio/) implements applications consuming the database.

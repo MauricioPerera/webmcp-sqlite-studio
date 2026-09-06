@@ -1,0 +1,28 @@
+{
+  "name": "webmcp-sqlite-studio",
+  "version": "1.0.0",
+  "description": "A client-side SQLite WASM Studio and native WebMCP server for AI agents under Knowledge-Driven Development (KDD).",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "kdd:contracts": "python scripts/validate_contracts.py knowledge/contracts",
+    "kdd:okf": "python scripts/validate_okf.py knowledge",
+    "kdd:lint": "python scripts/lint_ascii.py scripts",
+    "kdd:validate": "npm run kdd:contracts && npm run kdd:okf && npm run kdd:lint && npm test"
+  },
+  "dependencies": {
+    "fastwebmcp": "^0.4.2",
+    "sql.js": "^1.12.0",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "@types/sql.js": "^1.4.9",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0",
+    "vitest": "^3.0.7"
+  }
+}
